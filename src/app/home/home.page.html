@@ -1,46 +1,54 @@
-
 <ion-content class="ion-padding">
 
-  <!-- Requerimiento: Mostrar su nombre -->
   <ion-card color="light">
     <ion-card-content class="ion-text-center">
-      <h2><strong>Estudiante:</strong> {{ nombreEstudiante }}</h2>
+      <h2>Estudiante: {{ nombreEstudiante }}</h2>
     </ion-card-content>
   </ion-card>
 
-  <!-- Requerimiento: 5 contadores para múltiplos de 2, 3, 5, 7, 10 -->
   <div *ngFor="let item of contadores; let i = index">
     <ion-card [color]="item.color">
+
       <ion-card-header>
-        <ion-card-title>Múltiplo de {{ item.multiplo }}</ion-card-title>
+        <ion-card-title>
+          Múltiplo de {{ item.multiplo }}
+        </ion-card-title>
       </ion-card-header>
+
       <ion-card-content>
         <h2>Valor: {{ item.valor }}</h2>
-        
-        <ion-button fill="solid" color="light" (click)="aumentarContador(i)">
-          + Aumentar (+{{ item.multiplo }})
+
+        <ion-button
+          color="light"
+          (click)="aumentarContador(i)">
+          + {{ item.multiplo }}
         </ion-button>
 
-        <ion-button fill="outline" color="light" [disabled]="item.valor === 0" (click)="reiniciarContador(i)">
+        <ion-button
+          color="light"
+          [disabled]="item.valor === 0"
+          (click)="reiniciarContador(i)">
           Reiniciar
         </ion-button>
       </ion-card-content>
+
     </ion-card>
   </div>
 
-  <!-- Requerimiento: Botón para mostrar los números primos -->
-  <ion-button expand="block" color="dark" (click)="togglePrimos()" class="ion-margin-top">
-    {{ mostrarPrimos ? 'Ocultar Números Primos' : 'Mostrar Números Primos' }}
+  <ion-button
+    expand="block"
+    (click)="togglePrimos()">
+    {{ mostrarPrimos ? 'Ocultar Primos' : 'Mostrar Primos' }}
   </ion-button>
 
-  <!-- Lista de Números Primos -->
-  <ion-card *ngIf="mostrarPrimos" color="medium">
+  <ion-card *ngIf="mostrarPrimos">
     <ion-card-header>
       <ion-card-title>Números Primos</ion-card-title>
     </ion-card-header>
+
     <ion-card-content>
-      <ion-chip *ngFor="let primo of numerosPrimos" color="dark">
-        <ion-label>{{ primo }}</ion-label>
+      <ion-chip *ngFor="let primo of numerosPrimos">
+        {{ primo }}
       </ion-chip>
     </ion-card-content>
   </ion-card>

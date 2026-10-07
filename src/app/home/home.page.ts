@@ -1,17 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { 
-  IonHeader, 
-  IonToolbar, 
-  IonTitle, 
-  IonContent, 
-  IonCard, 
-  IonCardHeader, 
-  IonCardTitle, 
-  IonCardContent, 
-  IonButton, 
-  IonChip, 
-  IonLabel 
+import {
+  IonContent,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
+  IonButton,
+  IonChip
 } from '@ionic/angular';
 
 @Component({
@@ -21,21 +17,18 @@ import {
   standalone: true,
   imports: [
     CommonModule,
-    IonHeader, 
-    IonToolbar, 
-    IonTitle, 
-    IonContent, 
-    IonCard, 
-    IonCardHeader, 
-    IonCardTitle, 
-    IonCardContent, 
-    IonButton, 
-    IonChip, 
-    IonLabel
+    IonContent,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardContent,
+    IonButton,
+    IonChip
   ]
 })
 export class HomePage {
-  nombreEstudiante: string = 'Josue Patiño';
+
+  nombreEstudiante = 'Josue Patiño';
 
   contadores = [
     { multiplo: 2, valor: 0, color: 'primary' },
@@ -45,36 +38,40 @@ export class HomePage {
     { multiplo: 10, valor: 0, color: 'success' }
   ];
 
-  mostrarPrimos: boolean = false;
+  mostrarPrimos = false;
   numerosPrimos: number[] = [];
 
-  aumentarContador(index: number) {
-    this.contadores[index].valor += this.contadores[index].multiplo;
+  aumentarContador(i: number) {
+    this.contadores[i].valor += this.contadores[i].multiplo;
   }
 
-  reiniciarContador(index: number) {
-    this.contadores[index].valor = 0;
+  reiniciarContador(i: number) {
+    this.contadores[i].valor = 0;
   }
 
   togglePrimos() {
     this.mostrarPrimos = !this.mostrarPrimos;
-    if (this.mostrarPrimos && this.numerosPrimos.length === 0) {
-      this.generarPrimos(50);
+
+    if (this.mostrarPrimos) {
+      this.generarPrimos();
     }
   }
 
-  generarPrimos(limite: number) {
-    for (let i = 2; i <= limite; i++) {
+  generarPrimos() {
+    for (let i = 2; i <= 50; i++) {
       if (this.esPrimo(i)) {
         this.numerosPrimos.push(i);
       }
     }
   }
 
-  esPrimo(numero: number): boolean {
+  esPrimo(numero: number) {
     for (let i = 2; i < numero; i++) {
-      if (numero % i === 0) return false;
+      if (numero % i === 0) {
+        return false;
+      }
     }
-    return numero > 1;
+
+    return true;
   }
 }
